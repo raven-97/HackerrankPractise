@@ -8,31 +8,17 @@ import sys
 
 # Complete the climbingLeaderboard function below.
 def climbingLeaderboard(scores, alice):
-    
-    res = list()
- 
-  
+    scores = sorted(list(set(scores)))
+    n = len(scores)
+    index = 0
+    ranklist = list()
     for i in alice:
-        temp = list()
-        temp.append(i)
-        temp.extend(scores)
-        temp.sort(reverse=True)
-        rank = dict()
-        for j in temp:
-            rank[j]= rank.get(j,0)+1
-        k = list(rank.keys())
-        for h in range(len(k)):
-            if i == k[h]:
-                res.append(h+1)
-    return res
-
-
-    
-
-
-    
-
+        while (n > index and i >= scores[index]):
+            index += 1
+        ranklist.append(n+1-index)
+    return ranklist
    
+  
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
